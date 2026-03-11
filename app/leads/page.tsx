@@ -57,23 +57,23 @@ const SCORE_RANGES = [
 function StatusBadge({ status }: { status: PipelineStatus }) {
   const config: Record<PipelineStatus, { cls: string; label: string }> = {
     new: {
-      cls: "bg-blue-500/15 text-blue-400 border border-blue-500/30",
+      cls: "bg-blue-50 text-blue-700 border border-blue-200",
       label: "New",
     },
     reviewed: {
-      cls: "bg-slate-500/15 text-slate-400 border border-slate-500/30",
+      cls: "bg-gray-100 text-gray-600 border border-gray-200",
       label: "Reviewed",
     },
     under_loi: {
-      cls: "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30",
+      cls: "bg-emerald-50 text-emerald-700 border border-emerald-200",
       label: "Under LOI",
     },
     passed: {
-      cls: "bg-red-500/15 text-red-400 border border-red-500/30",
+      cls: "bg-red-50 text-red-600 border border-red-200",
       label: "Passed",
     },
     closed: {
-      cls: "bg-slate-500/15 text-slate-500 border border-slate-500/20",
+      cls: "bg-gray-100 text-gray-500 border border-gray-200",
       label: "Closed",
     },
   }
@@ -92,12 +92,12 @@ function TimeSensitivityDot({ level }: { level: "urgent" | "moderate" | "watch" 
     level === "urgent"
       ? "bg-red-500"
       : level === "moderate"
-        ? "bg-amber-400"
-        : "bg-slate-500"
+        ? "bg-amber-500"
+        : "bg-gray-400"
   const label =
     level === "urgent" ? "Urgent" : level === "moderate" ? "Moderate" : "Watch"
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-[var(--text-secondary)]">
+    <span className="inline-flex items-center gap-1.5 text-xs text-gray-600">
       <span className={`h-2 w-2 rounded-full ${dotColor}`} />
       {label}
     </span>
@@ -139,7 +139,7 @@ function sortLeads(leads: Lead[], sortKey: SortKey): Lead[] {
 // ── Select wrapper ───────────────────────────────────────────
 
 const selectClasses =
-  "appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-card)] py-2 pl-3 pr-8 text-sm text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--brand)]"
+  "appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-3 pr-8 text-sm text-gray-900 outline-none transition-colors focus:border-[#0049B8]"
 
 // ── Main component ───────────────────────────────────────────
 
@@ -192,12 +192,12 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-void)] px-6 py-8">
+    <div className="min-h-screen bg-gray-50 px-6 py-8">
       {/* ── Header ──────────────────────────────────────────── */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Leads</h1>
-          <span className="inline-flex items-center rounded-full bg-[var(--brand-light)] px-3 py-0.5 text-sm font-semibold text-[var(--brand)]">
+          <h1 className="text-2xl font-bold text-gray-900">Leads</h1>
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-0.5 text-sm font-semibold text-[#0049B8]">
             {filteredLeads.length}
           </span>
         </div>
@@ -218,7 +218,7 @@ export default function LeadsPage() {
               </option>
             ))}
           </select>
-          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
 
         {/* Asset Type */}
@@ -236,7 +236,7 @@ export default function LeadsPage() {
               </option>
             ))}
           </select>
-          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
 
         {/* Score Range */}
@@ -252,28 +252,28 @@ export default function LeadsPage() {
               </option>
             ))}
           </select>
-          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
 
         {/* Search */}
         <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
           <input
             type="text"
             placeholder="Search address, city, owner..."
             value={search}
             onChange={(e) => updateFilter(setSearch)(e.target.value)}
-            className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-card)] py-2 pl-9 pr-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] outline-none transition-colors focus:border-[var(--brand)]"
+            className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-colors focus:border-[#0049B8]"
           />
         </div>
 
         {/* Sort */}
         <div className="relative">
-          <ArrowUpDown className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <ArrowUpDown className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
           <select
             value={sortKey}
             onChange={(e) => setSortKey(e.target.value as SortKey)}
-            className="appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-card)] py-2 pl-9 pr-8 text-sm text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--brand)]"
+            className="appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-8 text-sm text-gray-900 outline-none transition-colors focus:border-[#0049B8]"
           >
             {SORT_OPTIONS.map((o) => (
               <option key={o.key} value={o.key}>
@@ -281,37 +281,37 @@ export default function LeadsPage() {
               </option>
             ))}
           </select>
-          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]" />
+          <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
         </div>
       </div>
 
       {/* ── Table ───────────────────────────────────────────── */}
-      <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+      <div className="overflow-x-auto rounded-xl border border-gray-200">
         <table className="w-full min-w-[1100px] text-sm">
           <thead>
-            <tr className="border-b border-[var(--border)] bg-[var(--bg-card)]">
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+            <tr className="border-b border-gray-200 bg-gray-50">
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Score
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Address
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Asset Type
               </th>
-              <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Est. Value
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Signals
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Owner Entity
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Status
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              <th className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Urgency
               </th>
             </tr>
@@ -321,9 +321,7 @@ export default function LeadsPage() {
               <tr
                 key={lead.id}
                 onClick={() => router.push(`/leads/${lead.id}`)}
-                className={`cursor-pointer border-b border-[var(--border)] transition-colors duration-150 hover:bg-white/[0.03] ${
-                  idx % 2 === 0 ? "bg-[var(--bg-card)]" : "bg-[var(--bg-void)]"
-                }`}
+                className="cursor-pointer border-b border-gray-200 bg-white transition-colors duration-150 hover:bg-gray-50"
               >
                 {/* Score */}
                 <td className="px-4 py-3">
@@ -332,28 +330,28 @@ export default function LeadsPage() {
 
                 {/* Address */}
                 <td className="px-4 py-3">
-                  <div className="font-medium text-[var(--text-primary)]">
+                  <div className="font-medium text-gray-900">
                     {lead.address}
                   </div>
-                  <div className="text-xs text-[var(--text-secondary)]">
+                  <div className="text-xs text-gray-500">
                     {lead.city}, {lead.state}
                   </div>
                 </td>
 
                 {/* Asset Type */}
-                <td className="px-4 py-3 text-[var(--text-secondary)]">
+                <td className="px-4 py-3 text-gray-500">
                   {lead.property_type_label}
                 </td>
 
                 {/* Est. Value */}
-                <td className="px-4 py-3 text-right font-mono font-medium tabular-nums text-[var(--text-primary)]">
+                <td className="px-4 py-3 text-right font-mono font-medium tabular-nums text-gray-900">
                   {formatCurrency(lead.estimated_value)}
                 </td>
 
                 {/* Signals */}
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-[var(--text-secondary)]">
+                    <span className="text-xs font-medium text-gray-500">
                       {lead.signals.length}
                     </span>
                     {lead.signals.length > 0 && (
@@ -366,7 +364,7 @@ export default function LeadsPage() {
                 </td>
 
                 {/* Owner */}
-                <td className="max-w-[180px] truncate px-4 py-3 text-[var(--text-secondary)]">
+                <td className="max-w-[180px] truncate px-4 py-3 text-gray-500">
                   {lead.owner_entity}
                 </td>
 
@@ -386,7 +384,7 @@ export default function LeadsPage() {
               <tr>
                 <td
                   colSpan={8}
-                  className="px-4 py-16 text-center text-[var(--text-secondary)]"
+                  className="px-4 py-16 text-center text-gray-500"
                 >
                   No leads match your filters.
                 </td>
@@ -398,15 +396,15 @@ export default function LeadsPage() {
 
       {/* ── Pagination ──────────────────────────────────────── */}
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm text-[var(--text-secondary)]">
+        <p className="text-sm text-gray-500">
           Showing{" "}
-          <span className="font-medium tabular-nums text-[var(--text-primary)]">
+          <span className="font-medium tabular-nums text-gray-900">
             {filteredLeads.length > 0 ? (safePageNum - 1) * PAGE_SIZE + 1 : 0}
             &ndash;
             {Math.min(safePageNum * PAGE_SIZE, filteredLeads.length)}
           </span>{" "}
           of{" "}
-          <span className="font-medium tabular-nums text-[var(--text-primary)]">
+          <span className="font-medium tabular-nums text-gray-900">
             {filteredLeads.length}
           </span>{" "}
           leads
@@ -416,20 +414,20 @@ export default function LeadsPage() {
           <button
             disabled={safePageNum <= 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-secondary)] transition-colors hover:border-[#334155] hover:text-[var(--text-primary)] disabled:cursor-not-allowed disabled:opacity-40"
+            className="inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ChevronLeft className="h-4 w-4" />
             Prev
           </button>
 
-          <span className="px-2 text-sm tabular-nums text-[var(--text-secondary)]">
+          <span className="px-2 text-sm tabular-nums text-gray-600">
             {safePageNum} / {totalPages}
           </span>
 
           <button
             disabled={safePageNum >= totalPages}
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-            className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-secondary)] transition-colors hover:border-[#334155] hover:text-[var(--text-primary)] disabled:cursor-not-allowed disabled:opacity-40"
+            className="inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Next
             <ChevronRight className="h-4 w-4" />

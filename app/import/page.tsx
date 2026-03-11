@@ -98,10 +98,10 @@ export default function ImportPage() {
         transition={{ duration: 0.4 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">
+        <h1 className="text-3xl font-bold text-gray-900">
           Import CSV
         </h1>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">
+        <p className="mt-1 text-sm text-gray-600">
           Upload your own leads for enrichment and scoring
         </p>
       </motion.div>
@@ -120,26 +120,26 @@ export default function ImportPage() {
           onClick={() => fileInputRef.current?.click()}
           className={`flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 text-center cursor-pointer transition-all ${
             isDragOver
-              ? "border-[var(--brand)] bg-[var(--brand-dim)]"
-              : "border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--text-muted)] hover:bg-white/[0.02]"
+              ? "border-[#0049B8] bg-[#0049B8]/5"
+              : "border-gray-300 bg-white hover:border-[#0049B8] hover:bg-gray-50"
           }`}
         >
           <div
             className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-colors ${
               isDragOver
-                ? "bg-[var(--brand-dim)] text-[var(--brand)]"
-                : "bg-[var(--bg-surface)] text-[var(--text-muted)]"
+                ? "bg-[#0049B8]/10 text-[#0049B8]"
+                : "bg-gray-100 text-gray-400"
             }`}
           >
             <CloudUpload className="h-7 w-7" />
           </div>
-          <span className="text-sm font-medium text-[var(--text-primary)]">
+          <span className="text-sm font-medium text-gray-900">
             Drag and drop your CSV file here
           </span>
-          <span className="mt-1 text-xs text-[var(--text-muted)]">
+          <span className="mt-1 text-xs text-gray-400">
             or click to browse
           </span>
-          <span className="mt-3 rounded-full bg-[var(--bg-surface)] px-3 py-1 text-[10px] font-medium text-[var(--text-muted)] uppercase tracking-wider">
+          <span className="mt-3 rounded-full bg-gray-100 px-3 py-1 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
             Accepts .csv files
           </span>
           <input
@@ -161,24 +161,24 @@ export default function ImportPage() {
           className="mb-6"
         >
           {/* File info bar */}
-          <div className="flex items-center gap-3 rounded-t-xl border border-b-0 border-[var(--border)] bg-[var(--bg-card)] px-5 py-3">
-            <FileText className="h-4 w-4 text-[var(--brand)]" />
-            <span className="text-sm font-medium text-[var(--text-primary)]">
+          <div className="flex items-center gap-3 rounded-t-xl border border-b-0 border-gray-200 bg-white px-5 py-3">
+            <FileText className="h-4 w-4 text-[#0049B8]" />
+            <span className="text-sm font-medium text-gray-900">
               {MOCK_FILENAME}
             </span>
             <div className="ml-auto flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)]">
-                <span className="font-mono font-semibold text-[var(--text-primary)]">
+              <span className="flex items-center gap-1.5 text-xs text-gray-600">
+                <span className="font-mono font-semibold text-gray-900">
                   {MOCK_STATS.total}
                 </span>{" "}
                 rows detected
               </span>
-              <span className="text-[var(--border)]">|</span>
-              <span className="flex items-center gap-1 text-xs text-emerald-400">
+              <span className="text-gray-200">|</span>
+              <span className="flex items-center gap-1 text-xs text-emerald-700">
                 <CheckCircle2 className="h-3 w-3" />
                 {MOCK_STATS.valid} valid
               </span>
-              <span className="flex items-center gap-1 text-xs text-red-400">
+              <span className="flex items-center gap-1 text-xs text-red-600">
                 <XCircle className="h-3 w-3" />
                 {MOCK_STATS.invalid} invalid
               </span>
@@ -186,54 +186,54 @@ export default function ImportPage() {
           </div>
 
           {/* Column mapping table */}
-          <div className="overflow-hidden rounded-b-xl border border-[var(--border)]">
+          <div className="overflow-hidden rounded-b-xl border border-gray-200">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[var(--border)] bg-[var(--bg-surface)]">
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                  <tr className="border-b border-gray-200 bg-gray-50">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Detected Column
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       &nbsp;
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Maps To
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Row 1
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Row 2
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Row 3
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-[var(--bg-card)]">
+                <tbody className="bg-white">
                   {MOCK_COLUMNS.map((col) => (
                     <tr
                       key={col.detected}
-                      className="border-b border-[var(--border)] last:border-b-0"
+                      className="border-b border-gray-200 last:border-b-0"
                     >
                       <td className="px-4 py-3">
-                        <span className="font-mono text-xs text-[var(--text-secondary)]">
+                        <span className="font-mono text-xs text-gray-600">
                           {col.detected}
                         </span>
                       </td>
                       <td className="px-2 py-3 text-center">
-                        <ArrowRight className="inline h-3 w-3 text-[var(--text-muted)]" />
+                        <ArrowRight className="inline h-3 w-3 text-gray-400" />
                       </td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex rounded-full bg-[var(--brand-dim)] px-2.5 py-0.5 text-xs font-medium text-[var(--brand)]">
+                        <span className="inline-flex rounded-full bg-[#0049B8]/10 px-2.5 py-0.5 text-xs font-medium text-[#0049B8]">
                           {col.mapped}
                         </span>
                       </td>
                       {col.sample.map((val, i) => (
                         <td
                           key={i}
-                          className="px-4 py-3 text-xs text-[var(--text-secondary)] whitespace-nowrap"
+                          className="px-4 py-3 text-xs text-gray-600 whitespace-nowrap"
                         >
                           {val}
                         </td>
@@ -249,14 +249,14 @@ export default function ImportPage() {
           <div className="mt-4 flex items-center gap-3">
             <button
               onClick={handleImport}
-              className="flex items-center gap-2 rounded-xl bg-[var(--brand)] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:brightness-110"
+              className="flex items-center gap-2 rounded-lg bg-[#0049B8] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0049B8]/25 transition-all hover:bg-[#003a93]"
             >
               <Upload className="h-4 w-4" />
               Import All Valid ({MOCK_STATS.valid} rows)
             </button>
             <button
               onClick={handleCancel}
-              className="flex items-center gap-2 rounded-xl border border-[var(--border)] px-5 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-white/[0.04] hover:text-[var(--text-primary)]"
+              className="flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
             >
               Cancel
             </button>
@@ -270,68 +270,68 @@ export default function ImportPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: showPreview ? 0.2 : 0.15 }}
       >
-        <h2 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-4">
+        <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wider mb-4">
           Import History
         </h2>
-        <div className="overflow-hidden rounded-xl border border-[var(--border)]">
+        <div className="overflow-hidden rounded-2xl border border-gray-200">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-[var(--border)] bg-[var(--bg-surface)]">
-                <th className="px-5 py-3 text-xs font-medium text-[var(--text-muted)]">
+              <tr className="border-b border-gray-200 bg-gray-50">
+                <th className="px-5 py-3 text-xs font-medium text-gray-400">
                   Filename
                 </th>
-                <th className="px-5 py-3 text-xs font-medium text-[var(--text-muted)]">
+                <th className="px-5 py-3 text-xs font-medium text-gray-400">
                   Date
                 </th>
-                <th className="px-5 py-3 text-xs font-medium text-[var(--text-muted)]">
+                <th className="px-5 py-3 text-xs font-medium text-gray-400">
                   Rows Imported
                 </th>
-                <th className="px-5 py-3 text-xs font-medium text-[var(--text-muted)]">
+                <th className="px-5 py-3 text-xs font-medium text-gray-400">
                   Status
                 </th>
-                <th className="px-5 py-3 text-xs font-medium text-[var(--text-muted)]">
+                <th className="px-5 py-3 text-xs font-medium text-gray-400">
                   &nbsp;
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-[var(--bg-card)]">
+            <tbody className="bg-white">
               {MOCK_IMPORT_HISTORY.map((imp) => (
                 <tr
                   key={imp.id}
-                  className="border-b border-[var(--border)] last:border-b-0"
+                  className="border-b border-gray-200 last:border-b-0"
                 >
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-2">
-                      <FileText className="h-4 w-4 text-[var(--text-muted)]" />
-                      <span className="text-sm font-medium text-[var(--text-primary)]">
+                      <FileText className="h-4 w-4 text-gray-400" />
+                      <span className="text-sm font-medium text-gray-900">
                         {imp.filename}
                       </span>
                     </div>
                   </td>
                   <td className="px-5 py-3.5">
-                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)]">
-                      <Clock className="h-3 w-3 text-[var(--text-muted)]" />
+                    <div className="flex items-center gap-1.5 text-xs text-gray-600">
+                      <Clock className="h-3 w-3 text-gray-400" />
                       {imp.date}
                     </div>
                   </td>
-                  <td className="px-5 py-3.5 text-sm font-mono text-[var(--text-primary)]">
+                  <td className="px-5 py-3.5 text-sm font-mono text-gray-900">
                     {imp.rows}
                   </td>
                   <td className="px-5 py-3.5">
                     {imp.status === "completed" ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-xs font-medium text-emerald-400">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700 border border-emerald-200">
                         <CheckCircle2 className="h-3 w-3" />
                         Completed
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-0.5 text-xs font-medium text-amber-400">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700 border border-amber-200">
                         <AlertTriangle className="h-3 w-3" />
                         Partial
                       </span>
                     )}
                   </td>
                   <td className="px-5 py-3.5">
-                    <button className="rounded-lg p-1.5 text-[var(--text-muted)] transition-colors hover:bg-white/[0.04] hover:text-red-400">
+                    <button className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-red-500">
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
                   </td>

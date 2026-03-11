@@ -48,18 +48,18 @@ function getPriorityBadge(priority: Priority): { label: string; cls: string } {
     default:
       return {
         label: "ARCHIVE",
-        cls: "bg-slate-500/15 text-slate-400 border border-slate-500/30 text-xs font-semibold px-2 py-0.5 rounded-md uppercase tracking-wider",
+        cls: "bg-gray-100 text-gray-500 border border-gray-200 text-xs font-semibold px-2 py-0.5 rounded-md uppercase tracking-wider",
       }
   }
 }
 
 function getStatusConfig(status: PipelineStatus): { label: string; cls: string } {
   const map: Record<PipelineStatus, { label: string; cls: string }> = {
-    new: { label: "New", cls: "bg-blue-500/15 text-blue-400 border border-blue-500/30" },
-    reviewed: { label: "Reviewed", cls: "bg-slate-500/15 text-slate-400 border border-slate-500/30" },
-    under_loi: { label: "Under LOI", cls: "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30" },
-    passed: { label: "Passed", cls: "bg-red-500/15 text-red-400 border border-red-500/30" },
-    closed: { label: "Closed", cls: "bg-slate-500/15 text-slate-500 border border-slate-500/20" },
+    new: { label: "New", cls: "bg-blue-50 text-blue-700 border border-blue-200" },
+    reviewed: { label: "Reviewed", cls: "bg-gray-100 text-gray-600 border border-gray-200" },
+    under_loi: { label: "Under LOI", cls: "bg-emerald-50 text-emerald-700 border border-emerald-200" },
+    passed: { label: "Passed", cls: "bg-red-50 text-red-600 border border-red-200" },
+    closed: { label: "Closed", cls: "bg-gray-100 text-gray-500 border border-gray-200" },
   }
   return map[status]
 }
@@ -67,22 +67,22 @@ function getStatusConfig(status: PipelineStatus): { label: string; cls: string }
 function getSensitivityConfig(level: "urgent" | "moderate" | "watch") {
   switch (level) {
     case "urgent":
-      return { label: "Urgent", dot: "bg-red-500", text: "text-red-400" }
+      return { label: "Urgent", dot: "bg-red-500", text: "text-red-600" }
     case "moderate":
-      return { label: "Moderate", dot: "bg-amber-400", text: "text-amber-400" }
+      return { label: "Moderate", dot: "bg-amber-500", text: "text-amber-600" }
     default:
-      return { label: "Watch", dot: "bg-slate-500", text: "text-slate-400" }
+      return { label: "Watch", dot: "bg-gray-400", text: "text-gray-500" }
   }
 }
 
 function getPortfolioHealthConfig(health: "healthy" | "mixed" | "distressed") {
   switch (health) {
     case "healthy":
-      return { label: "Healthy", cls: "text-emerald-400" }
+      return { label: "Healthy", cls: "text-emerald-600" }
     case "mixed":
-      return { label: "Mixed", cls: "text-amber-400" }
+      return { label: "Mixed", cls: "text-amber-600" }
     case "distressed":
-      return { label: "Distressed", cls: "text-red-400" }
+      return { label: "Distressed", cls: "text-red-600" }
   }
 }
 
@@ -96,8 +96,8 @@ function Card({ title, icon: Icon, children }: {
   return (
     <div className="card-glass">
       <div className="mb-4 flex items-center gap-2">
-        {Icon && <Icon className="h-4 w-4 text-[var(--text-secondary)]" />}
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+        {Icon && <Icon className="h-4 w-4 text-gray-400" />}
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
           {title}
         </h3>
       </div>
@@ -113,9 +113,9 @@ function DetailRow({ label, value, mono }: {
 }) {
   if (value === null || value === undefined) return null
   return (
-    <div className="flex items-baseline justify-between py-2 border-b border-[var(--border)]/50 last:border-0">
-      <span className="text-sm text-[var(--text-secondary)]">{label}</span>
-      <span className={`text-sm font-medium text-[var(--text-primary)] ${mono ? "font-mono tabular-nums" : ""}`}>
+    <div className="flex items-baseline justify-between py-2 border-b border-gray-100 last:border-0">
+      <span className="text-sm text-gray-500">{label}</span>
+      <span className={`text-sm font-medium text-gray-900 ${mono ? "font-mono tabular-nums" : ""}`}>
         {value}
       </span>
     </div>
@@ -125,15 +125,15 @@ function DetailRow({ label, value, mono }: {
 function SignalRow({ signal }: { signal: Signal }) {
   const color = SIGNAL_COLORS[signal.type]
   return (
-    <div className="flex items-start gap-3 py-3 border-b border-[var(--border)]/50 last:border-0">
+    <div className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0">
       <span
         className="mt-0.5 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
-        style={{ backgroundColor: `${color}26`, color }}
+        style={{ backgroundColor: `${color}18`, color }}
       >
         {signal.label}
       </span>
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-4 text-xs text-[var(--text-secondary)]">
+        <div className="flex items-center gap-4 text-xs text-gray-500">
           <span>Detected: {formatDate(signal.detected_at)}</span>
           <span>Source: {signal.source}</span>
           <span className="font-mono">Weight: {signal.weight}</span>
@@ -165,11 +165,11 @@ export default async function LeadDetailPage({
   const completenessPercent = Math.round(lead.completeness * 100)
 
   return (
-    <div className="min-h-screen bg-[var(--bg-void)] px-6 py-8">
+    <div className="min-h-screen bg-[#f8fafc] px-6 py-8">
       {/* ── Back button ────────────────────────────────────── */}
       <Link
         href="/leads"
-        className="group mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+        className="group mb-6 inline-flex items-center gap-2 text-sm text-[#0049B8] transition-colors hover:text-[#003a93]"
       >
         <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
         Back to Leads
@@ -179,7 +179,7 @@ export default async function LeadDetailPage({
       <div className="mb-8 flex items-start justify-between">
         <div>
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-[var(--text-primary)]">
+            <h1 className="text-2xl font-bold text-gray-900">
               {lead.address}
             </h1>
             <span
@@ -189,7 +189,7 @@ export default async function LeadDetailPage({
               {lead.distress_score}
             </span>
           </div>
-          <div className="mt-1 flex items-center gap-2 text-[var(--text-secondary)]">
+          <div className="mt-1 flex items-center gap-2 text-gray-500">
             <MapPin className="h-4 w-4" />
             <span>
               {lead.city}, {lead.state} {lead.zip} &middot; {lead.county} County
@@ -277,7 +277,7 @@ export default async function LeadDetailPage({
             {/* Distress Signals */}
             <Card title="Distress Signals" icon={AlertTriangle}>
               {lead.signals.length === 0 ? (
-                <p className="text-sm text-[var(--text-secondary)]">No signals detected.</p>
+                <p className="text-sm text-gray-500">No signals detected.</p>
               ) : (
                 <div>
                   {lead.signals.map((signal, i) => (
@@ -301,7 +301,7 @@ export default async function LeadDetailPage({
                       cy="60"
                       r="52"
                       fill="none"
-                      stroke="var(--border)"
+                      stroke="#e2e8f0"
                       strokeWidth="8"
                     />
                     <circle
@@ -324,7 +324,7 @@ export default async function LeadDetailPage({
                     >
                       {lead.distress_score}
                     </span>
-                    <span className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-400">
                       Score
                     </span>
                   </div>
@@ -347,28 +347,28 @@ export default async function LeadDetailPage({
                 <DetailRow label="Entity" value={lead.owner_entity} />
                 <DetailRow label="UBO" value={lead.owner_ubo} />
                 <DetailRow label="Portfolio Size" value={`${lead.owner_portfolio_size} properties`} mono />
-                <div className="flex items-baseline justify-between py-2 border-b border-[var(--border)]/50">
-                  <span className="text-sm text-[var(--text-secondary)]">Portfolio Health</span>
+                <div className="flex items-baseline justify-between py-2 border-b border-gray-100">
+                  <span className="text-sm text-gray-500">Portfolio Health</span>
                   <span className={`text-sm font-medium ${portfolioHealth.cls}`}>
                     {portfolioHealth.label}
                   </span>
                 </div>
                 <DetailRow label="Decision Maker" value={lead.decision_maker} />
-                <div className="flex items-baseline justify-between py-2 border-b border-[var(--border)]/50">
-                  <span className="inline-flex items-center gap-1 text-sm text-[var(--text-secondary)]">
+                <div className="flex items-baseline justify-between py-2 border-b border-gray-100">
+                  <span className="inline-flex items-center gap-1 text-sm text-gray-500">
                     <Phone className="h-3 w-3" />
                     Phone
                   </span>
-                  <span className="text-sm font-mono text-[var(--text-primary)]">
+                  <span className="text-sm font-mono text-gray-900">
                     {maskContact(lead.phone, "phone")}
                   </span>
                 </div>
-                <div className="flex items-baseline justify-between py-2 border-b border-[var(--border)]/50">
-                  <span className="inline-flex items-center gap-1 text-sm text-[var(--text-secondary)]">
+                <div className="flex items-baseline justify-between py-2 border-b border-gray-100">
+                  <span className="inline-flex items-center gap-1 text-sm text-gray-500">
                     <Mail className="h-3 w-3" />
                     Email
                   </span>
-                  <span className="text-sm font-mono text-[var(--text-primary)]">
+                  <span className="text-sm font-mono text-gray-900">
                     {maskContact(lead.email, "email")}
                   </span>
                 </div>
@@ -381,21 +381,21 @@ export default async function LeadDetailPage({
               <div className="flex flex-col gap-2">
                 <button
                   disabled
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] opacity-60 cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-500 opacity-60 cursor-not-allowed"
                 >
                   <CheckCircle2 className="h-4 w-4" />
                   Mark as Reviewed
                 </button>
                 <button
                   disabled
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] opacity-60 cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-500 opacity-60 cursor-not-allowed"
                 >
                   <Download className="h-4 w-4" />
                   Export to Excel
                 </button>
                 <button
                   disabled
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--brand)]/40 bg-[var(--brand-light)] px-4 py-2.5 text-sm font-medium text-[var(--brand)] opacity-60 cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0049B8] px-4 py-2.5 text-sm font-medium text-white opacity-60 cursor-not-allowed"
                 >
                   <Plus className="h-4 w-4" />
                   Add to Pipeline
@@ -406,7 +406,7 @@ export default async function LeadDetailPage({
             {/* Pipeline Status */}
             <div className="card-glass">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
                   Pipeline Status
                 </h3>
                 <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${statusConfig.cls}`}>
@@ -417,12 +417,12 @@ export default async function LeadDetailPage({
               {/* Completeness */}
               <div className="mt-4">
                 <div className="mb-1 flex items-baseline justify-between">
-                  <span className="text-xs text-[var(--text-secondary)]">Data Completeness</span>
-                  <span className="font-mono text-xs font-medium text-[var(--text-primary)]">
+                  <span className="text-xs text-gray-500">Data Completeness</span>
+                  <span className="font-mono text-xs font-medium text-gray-900">
                     {completenessPercent}%
                   </span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-[var(--border)]">
+                <div className="h-2 overflow-hidden rounded-full bg-gray-200">
                   <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{
@@ -437,14 +437,14 @@ export default async function LeadDetailPage({
               <div className="mt-4 flex flex-col gap-2">
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1.5 text-sm text-[var(--brand)] transition-colors hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm text-[#0049B8] transition-colors hover:underline"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                   Google Maps
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-1.5 text-sm text-[var(--brand)] transition-colors hover:underline"
+                  className="inline-flex items-center gap-1.5 text-sm text-[#0049B8] transition-colors hover:underline"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                   County Records

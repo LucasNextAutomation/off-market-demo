@@ -79,10 +79,10 @@ function formatDuration(seconds: number | null): string {
 // ── Status badge ──────────────────────────────────────────
 function StatusBadge({ status }: { status: Operation["status"] }) {
   const config: Record<Operation["status"], { icon: LucideIcon; label: string; classes: string }> = {
-    completed: { icon: CheckCircle2, label: "Completed", classes: "bg-emerald-500/15 text-emerald-400" },
-    running: { icon: Loader2, label: "Running", classes: "bg-blue-500/15 text-blue-400" },
-    idle: { icon: Pause, label: "Idle", classes: "bg-zinc-500/15 text-zinc-400" },
-    failed: { icon: XCircle, label: "Failed", classes: "bg-red-500/15 text-red-400" },
+    completed: { icon: CheckCircle2, label: "Completed", classes: "bg-emerald-50 text-emerald-700 border border-emerald-200" },
+    running: { icon: Loader2, label: "Running", classes: "bg-blue-50 text-blue-700 border border-blue-200" },
+    idle: { icon: Pause, label: "Idle", classes: "bg-gray-100 text-gray-500" },
+    failed: { icon: XCircle, label: "Failed", classes: "bg-red-50 text-red-600 border border-red-200" },
   }
 
   const c = config[status]
@@ -102,8 +102,8 @@ function TierBadge({ tier }: { tier: "free" | "paid" }) {
     <span
       className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider border ${
         tier === "free"
-          ? "border-emerald-500/30 text-emerald-400"
-          : "border-amber-500/30 text-amber-400"
+          ? "border-emerald-200 text-emerald-700 bg-emerald-50"
+          : "border-amber-200 text-amber-700 bg-amber-50"
       }`}
     >
       {tier}
@@ -146,10 +146,10 @@ export default function OperationsPage() {
         transition={{ duration: 0.4 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">
+        <h1 className="text-3xl font-bold text-gray-900">
           Operations
         </h1>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">
+        <p className="mt-1 text-sm text-gray-600">
           Automated data pipeline
         </p>
       </motion.div>
@@ -170,11 +170,7 @@ export default function OperationsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 + idx * 0.08 }}
-              className="relative overflow-hidden rounded-xl border border-[var(--border)] p-5"
-              style={{
-                background: "color-mix(in srgb, var(--bg-card) 80%, transparent)",
-                backdropFilter: "blur(12px)",
-              }}
+              className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-lg hover:border-[#0049B8]/20 transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
@@ -184,16 +180,16 @@ export default function OperationsPage() {
                   <Icon className="h-4 w-4" />
                 </div>
                 <div>
-                  <span className="block text-sm font-semibold text-[var(--text-primary)]">
+                  <span className="block text-sm font-semibold text-gray-900">
                     {cat.label}
                   </span>
-                  <span className="block text-xs text-[var(--text-muted)]">
+                  <span className="block text-xs text-gray-400">
                     {data?.count ?? 0}{" "}
                     {cat.key === "export" ? "manual" : data?.count === 1 ? "operation" : "operations"}
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+              <div className="flex items-center gap-1.5 text-xs text-gray-400">
                 <Clock className="h-3 w-3" />
                 <span>
                   {cat.key === "export"
@@ -206,7 +202,7 @@ export default function OperationsPage() {
               {/* Connecting arrow indicator */}
               {idx < CATEGORIES.length - 1 && (
                 <div className="absolute -right-2 top-1/2 -translate-y-1/2 hidden lg:block">
-                  <div className="h-0.5 w-4 bg-[var(--border)]" />
+                  <div className="h-0.5 w-4 bg-gray-200" />
                 </div>
               )}
             </motion.div>
@@ -221,7 +217,7 @@ export default function OperationsPage() {
         transition={{ duration: 0.4, delay: 0.3 }}
         className="mb-8"
       >
-        <h2 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-4">
+        <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wider mb-4">
           All Operations
         </h2>
         <div className="grid gap-3">
@@ -235,15 +231,15 @@ export default function OperationsPage() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.35 + idx * 0.05 }}
-                className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5"
+                className="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-lg hover:border-[#0049B8]/20 transition-all"
               >
                 <div className="flex items-start gap-4">
                   {/* Icon */}
                   <div
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg mt-0.5"
                     style={{
-                      backgroundColor: catConfig?.colorDim ?? "var(--bg-surface)",
-                      color: catConfig?.color ?? "var(--text-secondary)",
+                      backgroundColor: catConfig?.colorDim ?? "#f9fafb",
+                      color: catConfig?.color ?? "#4b5563",
                     }}
                   >
                     <Icon className="h-5 w-5" />
@@ -252,28 +248,28 @@ export default function OperationsPage() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-sm font-semibold text-[var(--text-primary)]">
+                      <span className="text-sm font-semibold text-gray-900">
                         {op.name}
                       </span>
                       <TierBadge tier={op.tier} />
                     </div>
-                    <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-3">
+                    <p className="text-xs text-gray-400 leading-relaxed mb-3">
                       {op.description}
                     </p>
 
                     {/* Stats row */}
-                    <div className="flex flex-wrap items-center gap-4 text-xs text-[var(--text-secondary)]">
+                    <div className="flex flex-wrap items-center gap-4 text-xs text-gray-600">
                       <StatusBadge status={op.status} />
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3 text-[var(--text-muted)]" />
+                        <Clock className="h-3 w-3 text-gray-400" />
                         {timeAgo(op.last_run)}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Database className="h-3 w-3 text-[var(--text-muted)]" />
+                        <Database className="h-3 w-3 text-gray-400" />
                         {op.records_processed.toLocaleString()} records
                       </span>
                       <span className="flex items-center gap-1">
-                        <Zap className="h-3 w-3 text-[var(--text-muted)]" />
+                        <Zap className="h-3 w-3 text-gray-400" />
                         {formatDuration(op.duration_seconds)}
                       </span>
                     </div>
@@ -282,7 +278,7 @@ export default function OperationsPage() {
                   {/* Run button */}
                   <button
                     onClick={handleRunNow}
-                    className="flex shrink-0 items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:bg-white/[0.04] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)]"
+                    className="flex shrink-0 items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 hover:border-gray-400"
                   >
                     <Play className="h-3 w-3" />
                     Run Now
@@ -299,52 +295,52 @@ export default function OperationsPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.6 }}
-        className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6"
+        className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-lg hover:border-[#0049B8]/20 transition-all"
       >
-        <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
+        <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
           Schedule
         </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {/* Daily */}
-          <div className="flex items-start gap-3 rounded-lg bg-[var(--bg-surface)] p-4">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400">
+          <div className="flex items-start gap-3 rounded-lg bg-gray-50 p-4">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
               <Calendar className="h-4 w-4" />
             </div>
             <div>
-              <span className="block text-sm font-medium text-[var(--text-primary)]">
+              <span className="block text-sm font-medium text-gray-900">
                 Daily at 2:00 AM ET
               </span>
-              <span className="block text-xs text-[var(--text-muted)] mt-1 leading-relaxed">
+              <span className="block text-xs text-gray-400 mt-1 leading-relaxed">
                 Full pipeline: scrape, enrich, score, alert
               </span>
             </div>
           </div>
 
           {/* Real-time */}
-          <div className="flex items-start gap-3 rounded-lg bg-[var(--bg-surface)] p-4">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-500/15 text-red-400">
+          <div className="flex items-start gap-3 rounded-lg bg-gray-50 p-4">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-600">
               <Zap className="h-4 w-4" />
             </div>
             <div>
-              <span className="block text-sm font-medium text-[var(--text-primary)]">
+              <span className="block text-sm font-medium text-gray-900">
                 Real-time
               </span>
-              <span className="block text-xs text-[var(--text-muted)] mt-1 leading-relaxed">
+              <span className="block text-xs text-gray-400 mt-1 leading-relaxed">
                 Hot lead alerts (score 85+) sent immediately
               </span>
             </div>
           </div>
 
           {/* Weekly */}
-          <div className="flex items-start gap-3 rounded-lg bg-[var(--bg-surface)] p-4">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-400">
+          <div className="flex items-start gap-3 rounded-lg bg-gray-50 p-4">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
               <Mail className="h-4 w-4" />
             </div>
             <div>
-              <span className="block text-sm font-medium text-[var(--text-primary)]">
+              <span className="block text-sm font-medium text-gray-900">
                 Weekly Digest
               </span>
-              <span className="block text-xs text-[var(--text-muted)] mt-1 leading-relaxed">
+              <span className="block text-xs text-gray-400 mt-1 leading-relaxed">
                 Digest email with all qualified leads (50+)
               </span>
             </div>

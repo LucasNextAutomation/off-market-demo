@@ -69,7 +69,7 @@ export default function MapPage() {
   }, [])
 
   return (
-    <div className="flex h-screen flex-col" style={{ background: "var(--background)" }}>
+    <div className="flex h-screen flex-col bg-gray-50">
       <MapFilters
         onChange={handleFilterChange}
         leadCount={filteredLeads.length}

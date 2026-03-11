@@ -11,16 +11,16 @@ interface MapInnerProps {
 }
 
 const PRIORITY_COLORS: Record<Priority, string> = {
-  hot: "#ef4444",
-  strong: "#f59e0b",
-  watch: "#6366f1",
-  archive: "#475569",
+  hot: "#dc2626",
+  strong: "#d97706",
+  watch: "#4f46e5",
+  archive: "#9ca3af",
 }
 
 const PRIORITY_RADIUS: Record<Priority, number> = {
-  hot: 6,
-  strong: 5,
-  watch: 4,
+  hot: 7,
+  strong: 6,
+  watch: 5,
   archive: 4,
 }
 
@@ -35,10 +35,10 @@ function formatValue(value: number): string {
 }
 
 function getScoreBadgeColor(score: number): string {
-  if (score >= 85) return "#ef4444"
-  if (score >= 70) return "#f59e0b"
-  if (score >= 50) return "#6366f1"
-  return "#475569"
+  if (score >= 85) return "#dc2626"
+  if (score >= 70) return "#d97706"
+  if (score >= 50) return "#4f46e5"
+  return "#9ca3af"
 }
 
 export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
@@ -46,12 +46,12 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
     <MapContainer
       center={[37.5, -96]}
       zoom={4}
-      style={{ height: "100%", width: "100%", background: "#020617" }}
+      style={{ height: "100%", width: "100%", background: "#f0f4f8" }}
       zoomControl={true}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png"
       />
 
       {leads.map((lead) => (
@@ -61,9 +61,9 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
           radius={PRIORITY_RADIUS[lead.priority]}
           pathOptions={{
             color: "#ffffff",
-            weight: 1,
+            weight: 2,
             fillColor: PRIORITY_COLORS[lead.priority],
-            fillOpacity: 0.8,
+            fillOpacity: 0.85,
           }}
           eventHandlers={{
             click: () => onLeadClick?.(lead.id),
@@ -72,27 +72,23 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
           <Popup>
             <div style={{
               fontFamily: "system-ui, sans-serif",
-              color: "#e2e8f0",
-              background: "#0f172a",
-              borderRadius: "8px",
-              padding: "12px 14px",
-              minWidth: "220px",
-              margin: "-14px -20px",
-              border: "1px solid #1e293b",
+              color: "#0f172a",
+              minWidth: "230px",
+              padding: "4px 2px",
             }}>
               <div style={{
-                fontSize: "13px",
+                fontSize: "14px",
                 fontWeight: 600,
-                color: "#f1f5f9",
-                marginBottom: "8px",
+                color: "#0f172a",
+                marginBottom: "4px",
                 lineHeight: 1.3,
               }}>
                 {lead.address}
               </div>
               <div style={{
-                fontSize: "11px",
-                color: "#94a3b8",
-                marginBottom: "10px",
+                fontSize: "12px",
+                color: "#64748b",
+                marginBottom: "12px",
               }}>
                 {lead.city}, {lead.state} {lead.zip}
               </div>
@@ -101,50 +97,54 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
-                marginBottom: "8px",
+                marginBottom: "10px",
               }}>
                 <span style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  padding: "2px 8px",
+                  padding: "2px 10px",
                   borderRadius: "9999px",
                   fontSize: "11px",
-                  fontWeight: 600,
+                  fontWeight: 700,
+                  fontFamily: "monospace",
                   color: "#ffffff",
                   backgroundColor: getScoreBadgeColor(lead.distress_score),
                 }}>
-                  Score: {lead.distress_score}
+                  {lead.distress_score}
                 </span>
                 <span style={{
                   fontSize: "11px",
-                  color: "#94a3b8",
+                  fontWeight: 600,
+                  color: getScoreBadgeColor(lead.distress_score),
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
                 }}>
-                  {lead.priority.charAt(0).toUpperCase() + lead.priority.slice(1)}
+                  {lead.priority}
                 </span>
               </div>
 
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                gap: "4px 12px",
-                fontSize: "11px",
-                marginBottom: "10px",
+                gap: "6px 16px",
+                fontSize: "12px",
+                marginBottom: "12px",
               }}>
                 <div>
-                  <span style={{ color: "#64748b" }}>Type</span>
-                  <div style={{ color: "#cbd5e1", fontWeight: 500 }}>
+                  <span style={{ color: "#94a3b8", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Type</span>
+                  <div style={{ color: "#1e293b", fontWeight: 500, marginTop: "1px" }}>
                     {lead.property_type_label}
                   </div>
                 </div>
                 <div>
-                  <span style={{ color: "#64748b" }}>Est. Value</span>
-                  <div style={{ color: "#cbd5e1", fontWeight: 500 }}>
+                  <span style={{ color: "#94a3b8", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Est. Value</span>
+                  <div style={{ color: "#1e293b", fontWeight: 600, marginTop: "1px" }}>
                     {formatValue(lead.estimated_value)}
                   </div>
                 </div>
-                <div style={{ gridColumn: "span 2", marginTop: "2px" }}>
-                  <span style={{ color: "#64748b" }}>Signals</span>
-                  <span style={{ color: "#cbd5e1", fontWeight: 500, marginLeft: "6px" }}>
+                <div style={{ gridColumn: "span 2" }}>
+                  <span style={{ color: "#94a3b8", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Signals</span>
+                  <span style={{ color: "#1e293b", fontWeight: 500, marginLeft: "8px" }}>
                     {lead.signals.length} detected
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
                   gap: "4px",
                   fontSize: "12px",
                   fontWeight: 600,
-                  color: "#818cf8",
+                  color: "#0049B8",
                   textDecoration: "none",
                 }}
               >

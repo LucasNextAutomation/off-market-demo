@@ -202,10 +202,10 @@ export default function ExportPage() {
         transition={{ duration: 0.4 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">
+        <h1 className="text-3xl font-bold text-gray-900">
           Export Center
         </h1>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">
+        <p className="mt-1 text-sm text-gray-600">
           Configure and download your lead data
         </p>
       </motion.div>
@@ -219,8 +219,8 @@ export default function ExportPage() {
           className="flex flex-col gap-6"
         >
           {/* Column Groups */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6">
-            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-lg hover:border-[#0049B8]/20 transition-all">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
               Include in Export
             </h2>
             <div className="flex flex-col gap-3">
@@ -230,18 +230,18 @@ export default function ExportPage() {
                   <button
                     key={group.key}
                     onClick={() => toggleGroup(group.key)}
-                    className="flex items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-white/[0.04]"
+                    className="flex items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-gray-50"
                   >
                     {isActive ? (
-                      <CheckSquare className="mt-0.5 h-4 w-4 shrink-0 text-[var(--brand)]" />
+                      <CheckSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#0049B8]" />
                     ) : (
-                      <Square className="mt-0.5 h-4 w-4 shrink-0 text-[var(--text-muted)]" />
+                      <Square className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
                     )}
                     <div>
-                      <span className="block text-sm font-medium text-[var(--text-primary)]">
+                      <span className="block text-sm font-medium text-gray-900">
                         {group.label}
                       </span>
-                      <span className="block text-xs text-[var(--text-muted)] mt-0.5">
+                      <span className="block text-xs text-gray-400 mt-0.5">
                         {group.description}
                       </span>
                     </div>
@@ -252,21 +252,21 @@ export default function ExportPage() {
           </div>
 
           {/* Filters */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6">
-            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-lg hover:border-[#0049B8]/20 transition-all">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
               Filters
             </h2>
             <div className="flex flex-col gap-4">
               {/* Market dropdown */}
               <div>
-                <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
                   Market
                 </label>
                 <div className="relative">
                   <select
                     value={selectedMarket}
                     onChange={(e) => setSelectedMarket(e.target.value)}
-                    className="w-full appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-3 py-2 pr-8 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--brand)] transition-colors cursor-pointer"
+                    className="w-full appearance-none rounded-lg border border-gray-200 bg-white px-3 py-2 pr-8 text-sm text-gray-900 outline-none focus:border-[#0049B8] focus:ring-2 focus:ring-[#0049B8]/10 transition-colors cursor-pointer"
                   >
                     <option value="all">All Markets</option>
                     {markets.map((m) => (
@@ -275,20 +275,20 @@ export default function ExportPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
+                  <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 </div>
               </div>
 
               {/* Asset Type dropdown */}
               <div>
-                <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
                   Asset Type
                 </label>
                 <div className="relative">
                   <select
                     value={selectedAssetType}
                     onChange={(e) => setSelectedAssetType(e.target.value)}
-                    className="w-full appearance-none rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-3 py-2 pr-8 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--brand)] transition-colors cursor-pointer"
+                    className="w-full appearance-none rounded-lg border border-gray-200 bg-white px-3 py-2 pr-8 text-sm text-gray-900 outline-none focus:border-[#0049B8] focus:ring-2 focus:ring-[#0049B8]/10 transition-colors cursor-pointer"
                   >
                     {ASSET_TYPE_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -296,13 +296,13 @@ export default function ExportPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
+                  <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 </div>
               </div>
 
               {/* Min Score */}
               <div>
-                <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
                   Min Distress Score
                 </label>
                 <div className="flex items-center gap-3">
@@ -312,9 +312,9 @@ export default function ExportPage() {
                     max={100}
                     value={minScore}
                     onChange={(e) => setMinScore(Number(e.target.value))}
-                    className="flex-1 accent-[var(--brand)]"
+                    className="flex-1 accent-[#0049B8]"
                   />
-                  <span className="w-10 text-right text-sm font-mono font-semibold text-[var(--text-primary)]">
+                  <span className="w-10 text-right text-sm font-mono font-semibold text-gray-900">
                     {minScore}
                   </span>
                 </div>
@@ -323,8 +323,8 @@ export default function ExportPage() {
           </div>
 
           {/* Format */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6">
-            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:shadow-lg hover:border-[#0049B8]/20 transition-all">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
               Format
             </h2>
             <div className="flex gap-3">
@@ -332,8 +332,8 @@ export default function ExportPage() {
                 onClick={() => setFormat("csv")}
                 className={`flex flex-1 items-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                   format === "csv"
-                    ? "border-[var(--brand)] bg-[var(--brand-dim)] text-[var(--brand)]"
-                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
+                    ? "border-[#0049B8] bg-[#0049B8]/10 text-[#0049B8]"
+                    : "border-gray-200 text-gray-600 hover:border-gray-400"
                 }`}
               >
                 <FileText className="h-4 w-4" />
@@ -341,7 +341,7 @@ export default function ExportPage() {
               </button>
               <button
                 disabled
-                className="flex flex-1 items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--text-muted)] opacity-50 cursor-not-allowed"
+                className="flex flex-1 items-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-400 opacity-50 cursor-not-allowed"
               >
                 <FileSpreadsheet className="h-4 w-4" />
                 Excel
@@ -359,18 +359,18 @@ export default function ExportPage() {
           className="flex flex-col gap-6"
         >
           {/* Lead count banner */}
-          <div className="rounded-xl border border-[var(--brand)]/20 bg-[var(--brand-dim)] p-5 flex items-center justify-between">
+          <div className="rounded-2xl border border-[#0049B8]/20 bg-[#0049B8]/5 p-5 flex items-center justify-between">
             <div>
-              <span className="block text-2xl font-bold text-[var(--brand)]">
+              <span className="block text-2xl font-bold text-[#0049B8]">
                 {filteredLeads.length.toLocaleString()}
               </span>
-              <span className="text-sm text-[var(--text-secondary)]">
+              <span className="text-sm text-gray-600">
                 leads ready for export
               </span>
             </div>
-            <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+            <div className="flex items-center gap-4 text-xs text-gray-400">
               <span>{activeGroups.size} column groups</span>
-              <span className="text-[var(--border)]">|</span>
+              <span className="text-gray-200">|</span>
               <span>
                 ~{Math.round(filteredLeads.length * activeGroups.size * 0.12)} KB
               </span>
@@ -378,32 +378,32 @@ export default function ExportPage() {
           </div>
 
           {/* Preview table */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden">
-            <div className="px-5 py-3 border-b border-[var(--border)] flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-[var(--text-primary)]">
+          <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden hover:shadow-lg hover:border-[#0049B8]/20 transition-all">
+            <div className="px-5 py-3 border-b border-gray-200 flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-gray-900">
                 Preview
               </h2>
-              <span className="text-xs text-[var(--text-muted)]">
+              <span className="text-xs text-gray-400">
                 Showing {previewLeads.length} of {filteredLeads.length.toLocaleString()}
               </span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[var(--border)]">
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                  <tr className="border-b border-gray-200 bg-gray-50">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Address
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Score
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Value
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Asset Type
                     </th>
-                    <th className="px-4 py-2.5 text-xs font-medium text-[var(--text-muted)] whitespace-nowrap">
+                    <th className="px-4 py-2.5 text-xs font-medium text-gray-400 whitespace-nowrap">
                       Signals
                     </th>
                   </tr>
@@ -412,23 +412,23 @@ export default function ExportPage() {
                   {previewLeads.map((lead) => (
                     <tr
                       key={lead.id}
-                      className="border-b border-[var(--border)] last:border-b-0"
+                      className="border-b border-gray-200 last:border-b-0"
                     >
                       <td className="px-4 py-3 whitespace-nowrap">
-                        <div className="text-sm font-medium text-[var(--text-primary)]">
+                        <div className="text-sm font-medium text-gray-900">
                           {lead.address}
                         </div>
-                        <div className="text-xs text-[var(--text-muted)]">
+                        <div className="text-xs text-gray-400">
                           {lead.city}, {lead.state}
                         </div>
                       </td>
                       <td className="px-4 py-3">
                         <ScoreBadge score={lead.distress_score} />
                       </td>
-                      <td className="px-4 py-3 text-sm text-[var(--text-primary)] font-mono">
+                      <td className="px-4 py-3 text-sm text-gray-900 font-mono">
                         {formatCurrency(lead.estimated_value)}
                       </td>
-                      <td className="px-4 py-3 text-sm text-[var(--text-secondary)] whitespace-nowrap">
+                      <td className="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">
                         {lead.property_type_label}
                       </td>
                       <td className="px-4 py-3">
@@ -436,17 +436,13 @@ export default function ExportPage() {
                           {lead.signals.slice(0, 2).map((s) => (
                             <span
                               key={s.type}
-                              className="inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium"
-                              style={{
-                                backgroundColor: "var(--bg-surface)",
-                                color: "var(--text-secondary)",
-                              }}
+                              className="inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-600"
                             >
                               {s.label}
                             </span>
                           ))}
                           {lead.signals.length > 2 && (
-                            <span className="text-[10px] text-[var(--text-muted)] self-center">
+                            <span className="text-[10px] text-gray-400 self-center">
                               +{lead.signals.length - 2}
                             </span>
                           )}
@@ -458,7 +454,7 @@ export default function ExportPage() {
                     <tr>
                       <td
                         colSpan={5}
-                        className="px-4 py-8 text-center text-sm text-[var(--text-muted)]"
+                        className="px-4 py-8 text-center text-sm text-gray-400"
                       >
                         No leads match the current filters
                       </td>
@@ -473,7 +469,7 @@ export default function ExportPage() {
           <button
             onClick={handleExport}
             disabled={filteredLeads.length === 0 || activeGroups.size === 0}
-            className="flex items-center justify-center gap-2.5 rounded-xl bg-[var(--brand)] px-6 py-4 text-base font-semibold text-white transition-all hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2.5 rounded-lg bg-[#0049B8] px-6 py-4 text-base font-semibold text-white shadow-lg shadow-[#0049B8]/25 transition-all hover:bg-[#003a93] disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Download className="h-5 w-5" />
             Export {filteredLeads.length.toLocaleString()} Leads as CSV

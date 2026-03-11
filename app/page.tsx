@@ -24,9 +24,9 @@ const ASSET_ICONS: Record<string, string> = {
 }
 
 const ASSET_COLORS: Record<string, string> = {
-  "Distressed Office": "var(--hot)",
-  "Mixed-Use Development Site": "var(--brand)",
-  "Value-Add Multifamily": "var(--success)",
+  "Distressed Office": "#ef4444",
+  "Mixed-Use Development Site": "#0049B8",
+  "Value-Add Multifamily": "#10b981",
 }
 
 export default function DashboardPage() {
@@ -35,7 +35,7 @@ export default function DashboardPage() {
   const assetTypes = getAssetTypeCounts()
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
+    <div className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-6 py-8">
         {/* Header */}
         <motion.div
@@ -44,16 +44,10 @@ export default function DashboardPage() {
           transition={{ duration: 0.4 }}
           className="mb-8"
         >
-          <h1
-            className="text-2xl font-bold tracking-tight"
-            style={{ color: "var(--text-primary)" }}
-          >
+          <h1 className="text-2xl font-bold tracking-tight text-gray-900">
             Dashboard
           </h1>
-          <p
-            className="mt-1 text-sm"
-            style={{ color: "var(--text-muted)" }}
-          >
+          <p className="mt-1 text-sm text-gray-400">
             Last updated: 2 minutes ago
           </p>
         </motion.div>
@@ -116,53 +110,29 @@ export default function DashboardPage() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mb-8"
         >
-          <div
-            className="overflow-hidden rounded-xl border border-[var(--border)]"
-            style={{ backgroundColor: "var(--bg-card)" }}
-          >
-            <div className="border-b border-[var(--border)] px-6 py-4">
-              <h3
-                className="text-sm font-semibold uppercase tracking-wider"
-                style={{ color: "var(--text-secondary)" }}
-              >
+          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+            <div className="border-b border-gray-200 px-6 py-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-600">
                 Market Overview
               </h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr
-                    className="border-b border-[var(--border)]"
-                    style={{ backgroundColor: "var(--bg-surface)" }}
-                  >
-                    <th
-                      className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: "var(--text-muted)" }}
-                    >
+                  <tr className="border-b border-gray-200 bg-gray-50">
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                       Market
                     </th>
-                    <th
-                      className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: "var(--text-muted)" }}
-                    >
+                    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">
                       State
                     </th>
-                    <th
-                      className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: "var(--text-muted)" }}
-                    >
+                    <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">
                       Leads
                     </th>
-                    <th
-                      className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: "var(--text-muted)" }}
-                    >
+                    <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">
                       Avg Score
                     </th>
-                    <th
-                      className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: "var(--text-muted)" }}
-                    >
+                    <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">
                       Hot Leads
                     </th>
                   </tr>
@@ -171,29 +141,20 @@ export default function DashboardPage() {
                   {markets.map((market) => (
                     <tr
                       key={market.name}
-                      className="border-b border-[var(--border)] transition-colors last:border-b-0 hover:bg-[var(--bg-surface)]"
+                      className="border-b border-gray-200 bg-white transition-colors last:border-b-0 hover:bg-gray-50"
                     >
                       <td className="px-6 py-4">
-                        <span
-                          className="font-medium"
-                          style={{ color: "var(--text-primary)" }}
-                        >
+                        <span className="font-medium text-gray-900">
                           {market.name}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span
-                          className="text-sm"
-                          style={{ color: "var(--text-secondary)" }}
-                        >
+                        <span className="text-sm text-gray-600">
                           {market.state}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <span
-                          className="font-mono text-sm font-medium"
-                          style={{ color: "var(--text-primary)" }}
-                        >
+                        <span className="font-mono text-sm font-medium text-gray-900">
                           {market.lead_count}
                         </span>
                       </td>
@@ -206,8 +167,8 @@ export default function DashboardPage() {
                           style={{
                             color:
                               market.hot_count > 0
-                                ? "var(--hot)"
-                                : "var(--text-muted)",
+                                ? "#ef4444"
+                                : "#94a3b8",
                           }}
                         >
                           {market.hot_count}
@@ -227,16 +188,13 @@ export default function DashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <h3
-            className="mb-4 text-sm font-semibold uppercase tracking-wider"
-            style={{ color: "var(--text-secondary)" }}
-          >
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-600">
             Asset Type Breakdown
           </h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {assetTypes.map((asset, i) => {
               const accentColor =
-                ASSET_COLORS[asset.type] ?? "var(--brand)"
+                ASSET_COLORS[asset.type] ?? "#0049B8"
 
               return (
                 <motion.div
@@ -244,8 +202,7 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.6 + i * 0.1 }}
-                  className="relative overflow-hidden rounded-xl border border-[var(--border)] p-6"
-                  style={{ backgroundColor: "var(--bg-card)" }}
+                  className="relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-[#0049B8]/20 hover:shadow-lg"
                 >
                   <div
                     className="absolute left-0 top-0 h-full w-1"
@@ -262,16 +219,10 @@ export default function DashboardPage() {
                       <Building2 className="h-5 w-5" />
                     </div>
                     <div>
-                      <p
-                        className="text-sm font-medium"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
+                      <p className="text-sm font-medium text-gray-600">
                         {asset.type}
                       </p>
-                      <p
-                        className="text-2xl font-bold"
-                        style={{ color: "var(--text-primary)" }}
-                      >
+                      <p className="text-2xl font-bold text-gray-900">
                         {asset.count}
                       </p>
                     </div>

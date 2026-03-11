@@ -40,12 +40,6 @@ const SCORE_PRESETS = [
   { value: "watch", label: "Watch 50+", min: 50 },
 ]
 
-const selectStyle: React.CSSProperties = {
-  background: "var(--bg-card)",
-  borderColor: "var(--border)",
-  color: "var(--text-primary)",
-}
-
 export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
   const [market, setMarket] = useState("All Markets")
   const [assetType, setAssetType] = useState("all")
@@ -105,21 +99,14 @@ export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
   }
 
   return (
-    <div
-      className="flex flex-wrap items-center gap-3 border-b px-4 py-3"
-      style={{
-        background: "var(--bg-surface)",
-        borderColor: "var(--border)",
-      }}
-    >
+    <div className="flex flex-wrap items-center gap-3 border-b border-gray-200 bg-white px-4 py-3">
       {/* Market selector */}
       <div className="flex items-center gap-2">
-        <MapPin className="h-4 w-4 shrink-0" style={{ color: "var(--text-muted)" }} />
+        <MapPin className="h-4 w-4 shrink-0 text-gray-400" />
         <select
           value={market}
           onChange={(e) => handleMarket(e.target.value)}
-          className="rounded-lg border px-3 py-1.5 text-sm outline-none"
-          style={selectStyle}
+          className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-900 outline-none"
         >
           {MARKETS.map((m) => (
             <option key={m} value={m}>
@@ -131,12 +118,11 @@ export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
 
       {/* Asset type selector */}
       <div className="flex items-center gap-2">
-        <Building2 className="h-4 w-4 shrink-0" style={{ color: "var(--text-muted)" }} />
+        <Building2 className="h-4 w-4 shrink-0 text-gray-400" />
         <select
           value={assetType}
           onChange={(e) => handleAssetType(e.target.value)}
-          className="rounded-lg border px-3 py-1.5 text-sm outline-none"
-          style={selectStyle}
+          className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-900 outline-none"
         >
           {ASSET_TYPES.map((t) => (
             <option key={t.value} value={t.value}>
@@ -148,26 +134,16 @@ export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
 
       {/* Score presets */}
       <div className="flex items-center gap-1.5">
-        <Target className="h-4 w-4 shrink-0" style={{ color: "var(--text-muted)" }} />
+        <Target className="h-4 w-4 shrink-0 text-gray-400" />
         {SCORE_PRESETS.map((preset) => (
           <button
             key={preset.value}
             onClick={() => handleScorePreset(preset.value)}
-            className="rounded-md px-2.5 py-1 text-xs font-medium transition-colors"
-            style={{
-              background:
-                scorePreset === preset.value
-                  ? "var(--brand-dim)"
-                  : "transparent",
-              color:
-                scorePreset === preset.value
-                  ? "var(--brand)"
-                  : "var(--text-secondary)",
-              border:
-                scorePreset === preset.value
-                  ? "1px solid var(--brand)"
-                  : "1px solid var(--border)",
-            }}
+            className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors ${
+              scorePreset === preset.value
+                ? "border-[#0049B8] bg-[#0049B8]/8 text-[#0049B8]"
+                : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+            }`}
           >
             {preset.label}
           </button>
@@ -176,28 +152,18 @@ export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
 
       {/* Search */}
       <div className="relative flex items-center">
-        <Search
-          className="pointer-events-none absolute left-2.5 h-3.5 w-3.5"
-          style={{ color: "var(--text-muted)" }}
-        />
+        <Search className="pointer-events-none absolute left-2.5 h-3.5 w-3.5 text-gray-400" />
         <input
           type="text"
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="Search address or city..."
-          className="rounded-lg border py-1.5 pl-8 pr-8 text-sm outline-none placeholder:text-[var(--text-muted)]"
-          style={{
-            background: "var(--bg-card)",
-            borderColor: "var(--border)",
-            color: "var(--text-primary)",
-            width: "200px",
-          }}
+          className="w-[200px] rounded-lg border border-gray-200 bg-white py-1.5 pl-8 pr-8 text-sm text-gray-900 outline-none placeholder:text-gray-400"
         />
         {search && (
           <button
             onClick={clearSearch}
-            className="absolute right-2 flex h-4 w-4 items-center justify-center rounded-full"
-            style={{ color: "var(--text-muted)" }}
+            className="absolute right-2 flex h-4 w-4 items-center justify-center rounded-full text-gray-400 hover:text-gray-600"
           >
             <X className="h-3 w-3" />
           </button>
@@ -212,16 +178,12 @@ export function MapFilters({ onChange, leadCount }: MapFiltersProps) {
         {hasActiveFilters && (
           <button
             onClick={resetAll}
-            className="text-xs font-medium transition-colors hover:opacity-80"
-            style={{ color: "var(--brand)" }}
+            className="text-xs font-medium text-[#0049B8] transition-colors hover:opacity-80"
           >
             Reset filters
           </button>
         )}
-        <span
-          className="whitespace-nowrap text-sm font-medium tabular-nums"
-          style={{ color: "var(--text-secondary)" }}
-        >
+        <span className="whitespace-nowrap text-sm font-medium tabular-nums text-gray-600">
           {leadCount.toLocaleString()} lead{leadCount !== 1 ? "s" : ""} shown
         </span>
       </div>

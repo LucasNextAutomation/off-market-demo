@@ -24,28 +24,28 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[264px] flex-col bg-[var(--bg-sidebar)] border-r border-[var(--border)]">
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[264px] flex-col border-r border-gray-200 bg-white">
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand)] text-white text-sm font-bold">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0049B8] text-white text-sm font-bold shadow-lg shadow-[#0049B8]/25">
           NA
         </div>
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-[var(--text-primary)] leading-tight">
+          <span className="text-sm font-semibold text-gray-900 leading-tight">
             Off-Market
           </span>
-          <span className="text-[11px] text-[var(--text-secondary)] leading-tight">
+          <span className="text-[11px] text-gray-500 leading-tight">
             Intelligence
           </span>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="mx-4 h-px bg-[var(--border)]" />
+      <div className="mx-4 h-px bg-gray-100" />
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4">
-        <ul className="flex flex-col gap-1">
+        <ul className="flex flex-col gap-0.5">
           {navItems.map((item) => {
             const isActive =
               item.href === "/"
@@ -62,16 +62,16 @@ export function Sidebar() {
                     text-sm font-medium transition-all duration-150
                     ${
                       isActive
-                        ? "bg-[var(--brand-light)] text-[var(--brand)] border-l-2 border-[var(--brand)] pl-[10px]"
-                        : "text-[var(--text-secondary)] hover:bg-white/[0.04] hover:text-[var(--text-primary)] border-l-2 border-transparent pl-[10px]"
+                        ? "bg-[#0049B8]/8 text-[#0049B8] border-l-[3px] border-[#0049B8] pl-[9px]"
+                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-900 border-l-[3px] border-transparent pl-[9px]"
                     }
                   `}
                 >
                   <Icon
                     className={`h-[18px] w-[18px] flex-shrink-0 transition-colors duration-150 ${
                       isActive
-                        ? "text-[var(--brand)]"
-                        : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
+                        ? "text-[#0049B8]"
+                        : "text-gray-400 group-hover:text-gray-600"
                     }`}
                   />
                   <span>{item.label}</span>
@@ -84,14 +84,14 @@ export function Sidebar() {
 
       {/* Bottom — Demo badge */}
       <div className="px-4 pb-5">
-        <div className="rounded-lg border border-amber-500/20 bg-amber-500/[0.08] px-4 py-3">
+        <div className="rounded-xl border border-[#0049B8]/15 bg-[#0049B8]/5 px-4 py-3">
           <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-            <span className="text-xs font-semibold text-amber-300 uppercase tracking-wider">
+            <div className="h-1.5 w-1.5 rounded-full bg-[#0049B8] animate-pulse" />
+            <span className="text-[11px] font-semibold text-[#0049B8] uppercase tracking-wider">
               Demo Mode
             </span>
           </div>
-          <p className="mt-1.5 text-[11px] leading-relaxed text-amber-200/60">
+          <p className="mt-1.5 text-[11px] leading-relaxed text-gray-400">
             Mock data — 7 US markets
           </p>
         </div>
