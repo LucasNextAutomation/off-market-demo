@@ -303,33 +303,44 @@
 }
 
 /* ============================================
-   Leaflet overrides for light theme
+   Leaflet overrides — dark map in light UI
    ============================================ */
 
 .leaflet-container {
-  background: #f0f4f8;
+  background: #1a1a2e;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .leaflet-popup-content-wrapper {
   background: #ffffff;
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .leaflet-popup-tip {
   background: #ffffff;
-  border: 1px solid var(--border);
 }
 
 .leaflet-control-zoom a {
-  background: #ffffff !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(8px);
 }
 
 .leaflet-control-zoom a:hover {
-  background: var(--bg-surface) !important;
+  background: #ffffff !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.5) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.7) !important;
 }

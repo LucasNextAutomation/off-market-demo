@@ -11,17 +11,17 @@ interface MapInnerProps {
 }
 
 const PRIORITY_COLORS: Record<Priority, string> = {
-  hot: "#dc2626",
-  strong: "#d97706",
-  watch: "#4f46e5",
-  archive: "#9ca3af",
+  hot: "#ef4444",
+  strong: "#f59e0b",
+  watch: "#818cf8",
+  archive: "#64748b",
 }
 
 const PRIORITY_RADIUS: Record<Priority, number> = {
-  hot: 7,
-  strong: 6,
-  watch: 5,
-  archive: 4,
+  hot: 8,
+  strong: 7,
+  watch: 6,
+  archive: 5,
 }
 
 function formatValue(value: number): string {
@@ -46,12 +46,12 @@ export default function MapInner({ leads, onLeadClick }: MapInnerProps) {
     <MapContainer
       center={[37.5, -96]}
       zoom={4}
-      style={{ height: "100%", width: "100%", background: "#f0f4f8" }}
+      style={{ height: "100%", width: "100%", background: "#1a1a2e" }}
       zoomControl={true}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
 
       {leads.map((lead) => (
