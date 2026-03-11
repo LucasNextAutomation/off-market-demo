@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
   LayoutDashboard,
@@ -9,6 +10,7 @@ import {
   Download,
   Cog,
   Upload,
+  ExternalLink,
 } from "lucide-react"
 
 const navItems = [
@@ -25,26 +27,42 @@ export function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-[264px] flex-col border-r border-gray-200 bg-white">
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-6 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0049B8] text-white text-sm font-bold shadow-lg shadow-[#0049B8]/25">
-          NA
-        </div>
-        <div className="flex flex-col">
-          <span className="text-sm font-semibold text-gray-900 leading-tight">
-            Off-Market
-          </span>
-          <span className="text-[11px] text-gray-500 leading-tight">
-            Intelligence
-          </span>
-        </div>
+      {/* NextAutomation Logo */}
+      <div className="px-5 py-5">
+        <Link
+          href="https://nextautomation.us"
+          target="_blank"
+          className="group flex items-center gap-2.5 rounded-xl p-2 transition-colors hover:bg-gray-50"
+        >
+          <div className="relative h-8 w-8 shrink-0">
+            <Image
+              src="/logo.png"
+              alt="NextAutomation Logo"
+              width={32}
+              height={32}
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[13px] font-bold text-gray-900 leading-tight">
+              NextAutomation
+            </span>
+            <span className="text-[10px] font-medium text-gray-400 leading-tight tracking-wide uppercase">
+              Off-Market Intelligence
+            </span>
+          </div>
+        </Link>
       </div>
 
       {/* Divider */}
-      <div className="mx-4 h-px bg-gray-100" />
+      <div className="mx-5 h-px bg-gray-100" />
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4">
+        <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-widest text-gray-400">
+          Navigation
+        </p>
         <ul className="flex flex-col gap-0.5">
           {navItems.map((item) => {
             const isActive =
@@ -82,19 +100,31 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      {/* Bottom — Demo badge */}
-      <div className="px-4 pb-5">
-        <div className="rounded-xl border border-[#0049B8]/15 bg-[#0049B8]/5 px-4 py-3">
+      {/* Bottom section */}
+      <div className="px-4 pb-4 space-y-3">
+        {/* Demo badge */}
+        <div className="rounded-xl border border-[#0049B8]/12 bg-[#0049B8]/[0.03] px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-[#0049B8] animate-pulse" />
-            <span className="text-[11px] font-semibold text-[#0049B8] uppercase tracking-wider">
-              Demo Mode
+            <span className="text-[10px] font-semibold text-[#0049B8] uppercase tracking-wider">
+              Interactive Demo
             </span>
           </div>
           <p className="mt-1.5 text-[11px] leading-relaxed text-gray-400">
-            Mock data — 7 US markets
+            320 properties across 7 US markets
           </p>
         </div>
+
+        {/* CTA link */}
+        <a
+          href="https://nextautomation.us"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-xs font-medium text-gray-500 transition-all hover:border-[#0049B8]/30 hover:bg-[#0049B8]/[0.03] hover:text-[#0049B8]"
+        >
+          <span>nextautomation.us</span>
+          <ExternalLink className="h-3 w-3" />
+        </a>
       </div>
     </aside>
   )

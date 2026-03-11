@@ -5,14 +5,15 @@ import { Sidebar } from "@/components/sidebar"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Off-Market Deal Sourcing | NextAutomation Demo",
+  title: "Off-Market Deal Sourcing | NextAutomation",
   description:
-    "AI-powered off-market commercial deal sourcing system. Monitor distress signals, enrich properties, score opportunities, and close deals faster.",
-  icons: { icon: "/favicon.png" },
+    "AI-powered off-market commercial deal sourcing system by NextAutomation. Monitor distress signals, enrich properties, score opportunities 0-100, and close deals faster across 7+ US markets.",
+  icons: { icon: "/favicon.png", apple: "/logo.png" },
   openGraph: {
     title: "Off-Market Deal Sourcing | NextAutomation",
     description: "AI-powered commercial deal sourcing — monitor distress signals across 7 US markets, score opportunities 0-100, and close deals faster.",
     type: "website",
+    images: [{ url: "/logo.png", width: 1024, height: 1024, alt: "NextAutomation Logo" }],
   },
 }
 
