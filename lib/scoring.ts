@@ -19,12 +19,12 @@ const SIGNAL_WEIGHTS: Record<SignalType, number> = {
 export function computeDistressScore(signals: Signal[]): number {
   if (signals.length === 0) return 0
 
-  // Signal scoring (60% weight)
+  // Signal scoring (up to 70 points)
   const signalSum = signals.reduce((sum, s) => sum + SIGNAL_WEIGHTS[s.type], 0)
-  const signalScore = Math.min(signalSum, 60)
+  const signalScore = Math.min(signalSum, 70)
 
-  // Stacking bonus: multiple signals = exponentially more likely motivated seller
-  const stackBonus = Math.min((signals.length - 1) * 6, 20)
+  // Stacking bonus: multiple signals = exponentially more likely motivated seller (up to 30)
+  const stackBonus = Math.min((signals.length - 1) * 8, 30)
 
   // Combined
   const raw = signalScore + stackBonus
