@@ -344,3 +344,168 @@
 .leaflet-control-attribution a {
   color: rgba(255, 255, 255, 0.7) !important;
 }
+
+/* ============================================
+   Memo paper styles (Deal Analyzer)
+   ============================================ */
+
+.memo-paper {
+  font-family: "Libre Franklin", system-ui, sans-serif;
+  color: #1e293b;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.memo-paper h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #002060;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #002060;
+}
+
+.memo-paper h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #002060;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.memo-paper h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.memo-paper p {
+  margin-bottom: 12px;
+}
+
+.memo-paper ul,
+.memo-paper ol {
+  padding-left: 20px;
+  margin: 10px 0 16px;
+}
+
+.memo-paper li {
+  margin-bottom: 6px;
+}
+
+.memo-paper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+  font-size: 13px;
+}
+
+.memo-paper table th {
+  background: #002060;
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.memo-paper table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+.memo-paper table tr:hover td {
+  background: #f8fafc;
+}
+
+.memo-paper blockquote {
+  border-left: 3px solid #002060;
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: #f0f4ff;
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: #334155;
+}
+
+/* Citation badges */
+.cite-im {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  background: rgba(167, 139, 250, 0.15);
+  color: #7c3aed;
+  vertical-align: middle;
+  margin: 0 1px;
+}
+
+.cite-web {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  background: rgba(0, 73, 184, 0.1);
+  color: #0049B8;
+  vertical-align: middle;
+  margin: 0 1px;
+}
+
+.cite-model {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  background: rgba(244, 114, 182, 0.15);
+  color: #db2777;
+  vertical-align: middle;
+  margin: 0 1px;
+}
+
+.cite-gap {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  background: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+  vertical-align: middle;
+  margin: 0 1px;
+}
+
+.customize-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(0, 73, 184, 0.08);
+  color: #0049B8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 8px;
+}

@@ -11,12 +11,14 @@ import {
   Cog,
   Upload,
   ExternalLink,
+  FileText,
 } from "lucide-react"
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { label: "Map View", icon: Map, href: "/map" },
   { label: "Leads", icon: Building2, href: "/leads" },
+  { label: "Deal Analyzer", icon: FileText, href: "/analyzer" },
   { label: "Export Center", icon: Download, href: "/export" },
   { label: "Operations", icon: Cog, href: "/operations" },
   { label: "Import CSV", icon: Upload, href: "/import" },
