@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "Off-Market Deal Sourcing | NextAutomation Demo",
   description:
     "AI-powered off-market commercial deal sourcing system. Monitor distress signals, enrich properties, score opportunities, and close deals faster.",
+  icons: { icon: "/favicon.png" },
+  openGraph: {
+    title: "Off-Market Deal Sourcing | NextAutomation",
+    description: "AI-powered commercial deal sourcing — monitor distress signals across 7 US markets, score opportunities 0-100, and close deals faster.",
+    type: "website",
+  },
 }
 
 export default function RootLayout({
